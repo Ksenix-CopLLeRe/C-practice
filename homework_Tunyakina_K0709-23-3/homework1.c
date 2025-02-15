@@ -14,7 +14,7 @@ int main() {
     printf("Чтобы закончить проверку, введите 0.\n");
     int number = 1;
     while (number != 0) {
-        printf("%s", "\nВведите номер задачи: ");
+        printf("%s", "\nВведите номер задачи (чтобы закончить введите 0): ");
         scanf("%d", &number);
         if (number == 1) {
             task1();
@@ -133,7 +133,7 @@ void task5() {
     printf("Введите фактическую скорость: ");
     scanf("%lf", &real_speed);
 
-    if (estimated_speed - real_speed <= 0.1) {
+    if (real_speed - estimated_speed <= 0.1) {
         printf("Орбита спутника стабильна\n");
     } else {
         printf("Орбита спутника НЕ стабильна\n");
@@ -155,6 +155,20 @@ void task6() {
     int astronauts;
     printf("Введите количество космонавтов: ");
     scanf("%d", &astronauts);
+ 
+    int solutions = 0;
+    for (int i = 0; i <= astronauts / 2; i++) {
+        for (int j = 0; j <= (astronauts - 2 * i) / 3; j++) {
+            int rest_astronauts = astronauts - 2 * i - 3 * j;
+            if (rest_astronauts % 4 == 0) {
+                printf("Комплектация: %d 2-х местных, %d 3-х местных, %d 4-х местных модулей\n", i, j, rest_astronauts / 4);
+                solutions = 1;
+            }
+        }
+    }
+    if (!solutions) {
+        printf("Невозможно разместить %d космонавтов(-a).\n", astronauts);
+    }
 }
 
 // №7
