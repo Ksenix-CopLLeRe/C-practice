@@ -87,6 +87,7 @@ void task1() {
     free(stlist);
 }
 
+
 // №2
 // Создайте структуру Item, которая будет хранить информацию о товаре: 
 // название (строка), количество (целое число), цена (вещественное число). 
@@ -117,8 +118,54 @@ void task2() {
 }
 
 
-void task3() {}
+// №3
+// Создайте структуру Event, которая будет хранить информацию о событии: 
+// название события (строка), дата (структура с полями день, месяц, год), описание (строка). 
+// Напишите программу, которая будет принимать несколько событий и выводить их в формате... .
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+struct Event {
+    char name[50];           
+    struct Date eventDate;                  
+    char description[50]; 
+};
+void task3() {
+    int n;
+    printf("Введите количество событий: ");
+    scanf("%d", &n);
+    struct Event *events = (struct Event*) malloc(sizeof(struct Event) * n);
+
+    for (int i = 0; i < n; i++) {
+        printf("Введите название события, дату (ДД ММ ГГГГ), описание: ");
+        scanf("%s%d%d%d%s", events[i].name, &events[i].eventDate.day, 
+              &events[i].eventDate.month, &events[i].eventDate.year, events[i].description);
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("Event: %s\nDate: %d/%d/%d\nDescription: %s\n\n", 
+               events[i].name, 
+               events[i].eventDate.day, 
+               events[i].eventDate.month, 
+               events[i].eventDate.year, 
+               events[i].description);
+    }
+
+    free(events);
+}
+
+
+// №4
+// Создайте структуру Employee, которая будет хранить информацию о сотруднике: 
+// имя (строка), должность (строка), зарплата (вещественное число). 
+// Напишите программу, которая принимает информацию о нескольких сотрудниках, 
+// а затем выводит отчет по зарплатам.
 void task4() {}
+
+
 void task5() {}
 void task6() {}
 void task7() {}
