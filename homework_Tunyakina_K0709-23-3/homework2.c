@@ -77,12 +77,12 @@ void task1() {
     
     for (int i = 0; i < n; i++) {
         struct Student student;
-        printf("Введите имя, возраст, средний балл (через пробел): ");
+        printf("Введите имя, возраст, средний балл: ");
         scanf("%s%d%f", stlist[i].name, &stlist[i].age, &stlist[i].gpa);
     }
 
     for (int i = 0; i < n; i++) {
-        printf("Name: %s\nAge: %d\nGPA: %.2lf\n", stlist[i].name, stlist[i].age, stlist[i].gpa);
+        printf("\nName: %s\nAge: %d\nGPA: %.2lf\n", stlist[i].name, stlist[i].age, stlist[i].gpa);
     }
     free(stlist);
 }
@@ -107,12 +107,12 @@ void task2() {
 
     for (int i = 0; i < n; i++) {
         struct Item item;
-        printf("Введите название, количество, цену (через пробел): ");
+        printf("Введите название, количество, цену: ");
         scanf("%s%d%f", items[i].name, &items[i].quantity, &items[i].price);
     }
 
     for (int i = 0; i < n; i++) {
-        printf("Item: %s\nQuantity: %d\nPrice: %.2lf\n", items[i].name, items[i].quantity, items[i].price);
+        printf("\nItem: %s\nQuantity: %d\nPrice: %.2lf\n", items[i].name, items[i].quantity, items[i].price);
     }
     free(items);
 }
@@ -146,11 +146,8 @@ void task3() {
     }
 
     for (int i = 0; i < n; i++) {
-        printf("Event: %s\nDate: %d/%d/%d\nDescription: %s\n\n", 
-               events[i].name, 
-               events[i].eventDate.day, 
-               events[i].eventDate.month, 
-               events[i].eventDate.year, 
+        printf("\nEvent: %s\nDate: %d/%d/%d\nDescription: %s\n", events[i].name, 
+               events[i].eventDate.day, events[i].eventDate.month, events[i].eventDate.year, 
                events[i].description);
     }
 
@@ -163,11 +160,80 @@ void task3() {
 // имя (строка), должность (строка), зарплата (вещественное число). 
 // Напишите программу, которая принимает информацию о нескольких сотрудниках, 
 // а затем выводит отчет по зарплатам.
-void task4() {}
+struct Employee {
+    char name[50];
+    char position[50];
+    float salary;
+};
+
+void task4() {
+    int n;
+    printf("Введите количество сотрудников: ");
+    scanf("%d", &n);
+    struct Employee *employees = (struct Employee*) malloc(sizeof(struct Employee) * n);
+
+    for (int i = 0; i < n; i++) {
+        struct Employee empl;
+        printf("Введите имя, должность, зарплату: ");
+        scanf("%s%s%f", employees[i].name, employees[i].position, &employees[i].salary);
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("\nName: %s\nPosition: %s\nSalary: %.2lf\n", 
+               employees[i].name, employees[i].position, employees[i].salary);
+    }
+    free(employees);
+}
 
 
-void task5() {}
-void task6() {}
+// №5
+union Data {
+    int integer;
+    float flt;
+    char string[50];
+
+};
+
+void task5() {
+    int type;
+    printf("Выберите тип данных\n(1 - целое число, 2 - вещественное число, 3 - строка): ");
+    scanf("%d", &type);
+    union Data data;
+
+    printf("Введиите данные: ");
+    if (type == 1) {
+        scanf("%d", &data.integer);
+        printf("Integer: %d\n", data.integer);
+    } else if (type == 2) {
+        scanf("%f", &data.flt);
+        printf("Float: %f\n", data.flt);
+    } else if (type == 3) {
+        scanf("%s", data.string);
+        printf("String: %s\n", data.string);
+    } else {
+        printf("Выбран неверный тип данных.\n");
+    }
+}
+
+// №6
+enum typeOfEngine {Gasoline, Diesel, Electric};
+
+struct Vehicle {
+    char brand[20];
+    char model[20];
+    int year;
+    enum typeOfEngine engine;
+};
+
+void task6() {
+    int n;
+    printf("Введите количество транспортных средств: ");
+    scanf("%d", &n);
+    struct Vehicle *vehicle = (struct Vehicle*) malloc(sizeof(struct Vehicle) * n);
+
+}
+
+
 void task7() {}
 void task8() {}
 void task9() {}
